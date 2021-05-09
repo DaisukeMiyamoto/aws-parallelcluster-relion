@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-sudo apt install cmake git build-essential mpi-default-bin mpi-default-dev libfftw3-dev libtiff-dev
+sudo apt install -y cmake git build-essential mpi-default-bin mpi-default-dev libfftw3-dev libtiff-dev
 
 #################################################################
 #
