@@ -7,7 +7,7 @@
 #SBATCH --error=result-%x.%j.err
 
 # set relion path
-export PATH=$PATH:/lustre/relion-ver31/build/bin
+export PATH=$PATH:/lustre/cryoem/relion-v31/build-cuda75/bin
 
 # CPU
 #COMPUTE_OPTIONS="--j ${SLURM_CPUS_PER_TASK} --cpu --pool 100 --dont_combine_weights_via_disc"
