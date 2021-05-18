@@ -34,3 +34,9 @@ pcluster ssh relion-cluster -i <KEY_NAME>
 ```
 sbatch -p g4dn-12x run_benchmark_g4dn-12x-mpi5.sh
 ```
+
+## using NVIDIA GPU Cloud Docker Image
+
+- https://gitlab.com/NVHPC/ngc-examples/-/blob/master/relion/single-node/run_relion.sh
+- https://ngc.nvidia.com/catalog/containers/hpc:relion
+
