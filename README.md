@@ -2,7 +2,7 @@
 
 set up example for Relion on AWS ParallelCluster
 
-- AWS ParallelCluster 2.10.3
+- AWS ParallelCluster 2.10.4
 - Relion ver3.1
 
 ## set up environment
@@ -19,21 +19,12 @@ pcluster ssh relion-cluster -i <KEY_NAME>
 
 ### build Relion for CPU and GPU
 
+You could use `install_scripts/`.
 
-### download benchmark set
+- `01_install_requirements_ubuntu.sh`: Install requirements for Relion
+- `02_install_relion.sh`: Build Relion for CPU and GPU settings
+- `03_download_benchmarks.sh`: Download Benchmark data.
 
-## using AWS ParallelCluster with Relion GUI
-
-- `RELION_QSUB_TEMPLATE`
-- `RELION_QSUB_COMMAND`
-
-## Benchmarking Class2D/Class3d
-
-- modify PATH variable to 
-
-```
-sbatch -p g4dn-12x run_benchmark_g4dn-12x-mpi5.sh
-```
 
 ## using NVIDIA GPU Cloud Docker Image
 
