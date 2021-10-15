@@ -20,3 +20,5 @@ echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sourc
 
 sudo add-apt-repository "deb https://apt.repos.intel.com/oneapi all main"
 sudo apt install -y intel-basekit intel-hpckit
+
+source /opt/intel/oneapi/setvars.sh
