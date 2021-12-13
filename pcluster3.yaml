@@ -1,0 +1,92 @@
+Region: us-east-1
+Image:
+  Os: ubuntu2004
+HeadNode:
+  InstanceType: c5.xlarge
+  Networking:
+    SubnetId: [subnet-XXXXXXXXXX]
+  Ssh:
+    KeyName: [key-name]
+  LocalStorage:
+    RootVolume:
+      Size: 200
+      VolumeType: gp3
+#######################################################
+# Queue
+#######################################################
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+  - Name: g4dn-2xlarge
+    ComputeResources:
+    - Name: g4dn-2xlarge
+      InstanceType: g4dn.2xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+  - Name: g4dn-12xlarge
+    ComputeResources:
+    - Name: g4dn-12xlarge
+      InstanceType: g4dn.12xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+  - Name: g4dn-metal
+    ComputeResources:
+    - Name: g4dn-metal
+      InstanceType: g4dn.metal
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+  - Name: c6i-32xlarge
+    ComputeResources:
+    - Name: c6i-32xlarge
+      InstanceType: c6i.32xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+  - Name: g5-2xlarge
+    ComputeResources:
+    - Name: g5-2xlarge
+      InstanceType: g5.2xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+  - Name: g5-12xlarge
+    ComputeResources:
+    - Name: g5-12xlarge
+      InstanceType: g5.12xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - subnet-0f299c8d05548d923
+  - Name: g5-48xlarge
+    ComputeResources:
+    - Name: g5-48xlarge
+      InstanceType: g5.48xlarge
+      MinCount: 0
+      MaxCount: 10
+    Networking:
+      SubnetIds:
+      - [subnet-XXXXXXXXXX]
+#######################################################
+# Storage
+#######################################################
+SharedStorage:
+  - Name: FsxLustre0
+    StorageType: FsxLustre
+    MountDir: /shared
+    FsxLustreSettings:
+      StorageCapacity: 1200
+      DeploymentType: SCRATCH_2
