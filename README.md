@@ -2,8 +2,10 @@
 
 set up example for Relion on AWS ParallelCluster
 
-- AWS ParallelCluster 3.1.3
-- Relion 3.1.3
+- Validated conditions
+  - AWS ParallelCluster 3.1.3
+  - Relion 3.1.3
+  - `us-east-1` region
 
 ## Architecture Overview
 
@@ -16,7 +18,8 @@ set up example for Relion on AWS ParallelCluster
 
 ### 1. Launch Cluster
 
-On AWS CloudShell, run following commands for cluster creation.
+On AWS CloudShell, run following commands for cluster creation. The `create_relion_cluster.sh` script use `us-east-1` region in default.
+You could change `AWS_REGION` parameter in the script.
 
 ```
 git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
