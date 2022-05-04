@@ -52,6 +52,8 @@ You need to click `Advanced` and `Proceed to <IP> (unsafe)` to open NICE-DCV des
 
 #### 2.2 Install Relion
 
+![NICE-DCV](images/dcv_start.png)
+
 On NICE-DCV desktop, open **terminal** from Activities button on top left corner.
 Run following commands on the terminal for installing Relion.
 
