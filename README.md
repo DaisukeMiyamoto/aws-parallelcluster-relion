@@ -117,9 +117,9 @@ This tutorial shows an example about running **Class2D** process with batch job 
     - Queue submit command: sbatch
     - Standard submission script: `/shared/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh`
 5. Click `Run!` button to submit a new job.
-  - After job submission, you could find new EC2 instance is launching on EC2 management console.
-  - You could also find your job status with `squeue` command. Usually, launching instance needs almost 4 minutes. 
-  - When the job started, `ST` (STATUS) become `R` (RUNNING) from `CF` in `squeue` command. You could also check the job progress with output box on Relion [image](images/relion_outputs.png).
+    - After job submission, you could find new EC2 instance is launching on EC2 management console.
+    - You could also find your job status with `squeue` command. Usually, launching instance needs almost 4 minutes. 
+    - When the job started, `ST` (STATUS) become `R` (RUNNING) from `CF` in `squeue` command. You could also check the job progress with output box on Relion ( [image](images/relion_outputs.png) ).
 6. This job takes arround 10 minutes.
 
 
@@ -136,6 +136,9 @@ TBU
 ### Clean up Environments
 
 TBU
+
+On the terminal on CloudRun, run following command to delete cluster.
+This step delete all data in the cluster including FSx for Lustre.
 
 ```
 pcluster delete-cluster -n ${PCLUSTER_CLUSTER_NAME}
