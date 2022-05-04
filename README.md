@@ -7,7 +7,7 @@ set up example for Relion on AWS ParallelCluster
 
 ## Architecture Overview
 
-
+![Architecture Overview](images/relion_architecture.png)
 
 ## set by step guide
 
@@ -48,6 +48,9 @@ cd aws-parallelcluster-relion/02_relion_gui
 ./setup_relion_v31_gui.sh
 source ~/.bashrc
 ```
+
+- This figure show how relion job submission works with GUI and template files.
+![How relion job works](images/how_relion_job_works.png)
 
 :warning: **This compilation settings are not optimized. You need to customize for appropriate benchmarkings.**
 
