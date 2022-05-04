@@ -13,7 +13,7 @@ git checkout ${RELION_TAG}
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 cmake ..
-make -j 2
+make -j 4
 
 echo "export PATH=${PATH}:${BASE_DIR}/${TARGET}/${BUILD_DIR}/bin" |tee -a ~/.bashrc
 

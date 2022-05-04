@@ -14,7 +14,7 @@ set up example for Relion on AWS ParallelCluster
 
 ## Tutorial
 
-### 1. launch cluster
+### 1. Launch Cluster
 
 On AWS CloudShell, run following commands for cluster creation.
 
@@ -27,10 +27,10 @@ source ~/.bashrc
 
 You could check cluster status with following command.
 Cluster creation usually needs 5 to 10 minutes.
-If the `clusterStatus` become `CREATE_COMPLETE`, you could go to next step.
+If the `clusterStatus` become `CREATE_COMPLETE` from `CREATE_IN_PROGRESS`, go to next step.
 
 ```
-pcluster describe-cluster --cluster-name ${PCLUSTER_CLUSTER_NAME}
+pcluster list-clusters
 ```
 
 
@@ -44,12 +44,12 @@ Run following command and open published URL to access NICE-DCV remote desktop e
 pcluster dcv-connect --cluster-name ${PCLUSTER_CLUSTER_NAME} --key-path ~/.ssh/${SSH_KEY}
 ```
 
-- If it is your first time to access the cluster, a message like `The authenticity of host '54.158.195.212 (54.158.195.212)' can't be established.` could be shown.
+- If it is your first time to access the cluster, a message like `The authenticity of host '123.123.123.123 (123.123.123.123)' can't be established.` could be shown.
 You need to type `yes` and hitting enter.
 - On opening the NICE-DCV URL with browser, you will face `Your connection is not private` warning e.g. [image](images/chrome_warning.png).
 You need to click `Advanced` and `Proceed to <IP> (unsafe)` to open NICE-DCV desktop.
 
-#### 2.2 Install Relion
+#### 2.2 Compile and Install Relion
 
 ![NICE-DCV](images/dcv_start.png)
 
@@ -60,17 +60,21 @@ Run following commands on the terminal for installing Relion.
 cd /shared
 git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
 cd aws-parallelcluster-relion/02_relion_gui
+chmod +x ./setup_relion_v31_gui.sh
 ./setup_relion_v31_gui.sh
 source ~/.bashrc
 ```
-
 
 - :warning: **This compilation settings are not optimized. You need to customize for appropriate benchmarkings.**
 
 
 #### 2.3 Use public data for demonstration
 
-Download datasets and launch Relion.
+Run following commands to download datasets and launch Relion.
+This dataset include all completed steps and intermediate files.
+You could run any process without input parameter settings.
+Compilation needs few minutes.
+
 - :warning: This step downloads large amount of data (7GB) from Osaka University. Please read guides for appropriate use.
   - http://www.protein.osaka-u.ac.jp/rcsfp/databases/members/kawabata/EMtutorial.html
 
@@ -93,23 +97,27 @@ relion &
 ```
 -->
 
-This dataset include all completed steps and intermediate files.
-You could run any process without input parameter settings.
-In this tutorial we will run **MotionCorr** process with batch job submission way.
+![NICE-DCV](images/relion_start.png)
 
-1. Click `002:MotionCorr/job002/` in `Finished jobs` window to re-load MotionCorr settings.
+You could submit a job to job scheduler with `Running` tab settings.
+In this tutorial show an example with run **Class2D** process with batch job submission way.
+
+1. Click `007:Class2D/ManuManuPick/` in `Finished jobs` window to re-load previous settings.
 2. Click `2D classification` in top-left corner to create a new settings.
 3. Open `Compute` tab and set following parameters:
     - Use GPU acceleration?: No
 4. Open `Running` tab and set following parameters:
   - [Running] Tab
     - Number of MPI procs: 1
-    - Number of threads: 8
+    - Number of threads: 16
     - Submit to queue?: Yes
-    - Queue name: c6i-2xlarge
+    - Queue name: c6i-4xlarge
     - Queue submit command: sbatch
     - Standard submission script: `/shared/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh`
 5. Click `Run!` button to submit a new job.
+  - After job submission, you could find new EC2 instance is launching on EC2 management console.
+  - You could also find your job status with `squeue` command. Usually, launching instance needs almost 4 minutes. 
+  - When the job started, `ST` (STATUS) become `R` from `CF` in `squeue` command. You could also check the job progress with output box on Relion [image](images/relion_outputs.png).
 6. This job takes arround 10 minutes.
 
 
@@ -117,10 +125,6 @@ In this tutorial we will run **MotionCorr** process with batch job submission wa
 Relion GUI replace parameters (e.g. `XXXmpinodesXXX` ) with GUI settings.
 ![How relion job works](images/how_relion_job_works.png)
 
-
-After job submission, you could find new EC2 instance is launching on EC2 management console.
-You could also find your job status with `squeue` command.
-When the instance launched, you could check the job progress with output box on Relion [image](images/relion_outputs.png).
 
 
 ### benchmark Relion with compile optimization

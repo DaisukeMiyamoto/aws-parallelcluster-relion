@@ -8,7 +8,7 @@
 
 #################################################
 # set valiables
-export PCLUSTER_CLUSTER_NAME=my-relion-cluster-2
+export PCLUSTER_CLUSTER_NAME=my-relion-cluster
 echo "export PCLUSTER_CLUSTER_NAME=${PCLUSTER_CLUSTER_NAME}" |tee -a ~/.bashrc
 AWS_REGION=us-east-1
 PCLUSTER_VERSION=3.1.3
