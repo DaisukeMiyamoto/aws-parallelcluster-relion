@@ -102,7 +102,7 @@ relion &
 #### 2.4 Run Class2D on batch job
 
 You could submit a job to job scheduler with `Running` tab settings.
-In this tutorial show an example with run **Class2D** process with batch job submission way.
+This tutorial shows an example about running **Class2D** process with batch job  way.
 
 1. Click `007:Class2D/ManuManuPick/` in `Finished jobs` window to re-load previous settings.
 2. Click `2D classification` in top-left corner to create a new settings.
@@ -147,3 +147,6 @@ aws s3 rb s3://${BUCKET_NAME}
 aws ec2 delete-key-pair --key-name ${SSH_KEY}
 ```
 -->
+
+## Reference
+- [AWS ParallelCluster3 Tutorial](https://catalog.us-east-1.prod.workshops.aws/workshops/6735ed89-c2de-4180-904c-40ac9fba7419/en-US/)
