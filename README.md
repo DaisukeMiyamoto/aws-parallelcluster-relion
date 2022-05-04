@@ -2,32 +2,56 @@
 
 set up example for Relion on AWS ParallelCluster
 
-- AWS ParallelCluster 2.10.4
+- AWS ParallelCluster 3.1.3
 - Relion ver3.1
 
-## set up environment
+## set by step guide
 
 ### set up AWS ParallelCluster
 
-```
-pcluster create -c pcluster.conf relion-cluster
-```
+On AWS CloudShell,
 
 ```
-pcluster ssh relion-cluster -i <KEY_NAME>
+git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
+cd aws-parallelcluster-relion/01_setup_cluster
+./create_relion_cluster.sh
+source ~/.bashrc
 ```
 
-### build Relion for CPU and GPU
+Check cluster status with
+```
+pcluster describe-cluster --cluster-name ${PCLUSTER_CLUSTER_NAME}
+```
 
-You could use `install_scripts/`.
-
-- `01_install_requirements_ubuntu.sh`: Install requirements for Relion
-- `02_install_relion.sh`: Build Relion for CPU and GPU settings
-- `03_download_benchmarks.sh`: Download Benchmark data.
+If the `clusterStatus` become `CREATE_COMPLETE`, you could go to next step.
 
 
-## using NVIDIA GPU Cloud Docker Image
+### Run Relion with GUI via NICE-DCV
 
-- https://gitlab.com/NVHPC/ngc-examples/-/blob/master/relion/single-node/run_relion.sh
-- https://ngc.nvidia.com/catalog/containers/hpc:relion
+Login ParallelCluster via NICE-DCV
 
+```
+pcluster dcv-connect --cluster-name ${PCLUSTER_CLUSTER_NAME} --key-path ~/.ssh/${SSH_KEY}
+```
+
+
+
+On GUI terminal, 
+
+```
+git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
+cd aws-parallelcluster-relion/02_relion_gui
+
+```
+
+
+### benchmark Relion with compile optimization
+
+
+### Clean up Environments
+
+```
+aws s3 rm s3://${BUCKET_NAME} --recursive
+aws s3 rb s3://${BUCKET_NAME}
+aws ec2 delete-key-pair --key-name ${SSH_KEY}
+```

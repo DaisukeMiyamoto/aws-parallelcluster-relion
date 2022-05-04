@@ -1,6 +1,6 @@
-#!/bin/bash -xe
+#!/bin/bash -xeu
 
-sudo apt install -y cmake git build-essential mpi-default-bin mpi-default-dev libfftw3-dev libtiff-dev
+sudo apt install -y cmake git build-essential libfftw3-dev libtiff-dev
 
 #################################################################
 #
@@ -21,4 +21,4 @@ echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sourc
 sudo add-apt-repository "deb https://apt.repos.intel.com/oneapi all main"
 sudo apt install -y intel-basekit intel-hpckit
 
-source /opt/intel/oneapi/setvars.sh
+#source /opt/intel/oneapi/setvars.sh

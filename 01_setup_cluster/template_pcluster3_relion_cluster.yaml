@@ -2,7 +2,7 @@ Region: {REGION}
 Image:
   Os: ubuntu2004
 HeadNode:
-  InstanceType: c6i.xlarge
+  InstanceType: c6i.2xlarge
   Networking:
     SubnetId: {SUBNET_HEAD}
   Ssh:
@@ -11,6 +11,15 @@ HeadNode:
     RootVolume:
       Size: 200
       VolumeType: gp3
+  Dcv:
+    Enabled: true
+  CustomActions:
+    OnNodeConfigured:
+      Script: s3://{BUCKET_NAME}/on-node-configured.sh
+  Iam:
+    S3Access:
+      - BucketName: {BUCKET_NAME}
+        EnableWriteAccess: false
 #######################################################
 # Queue
 #######################################################
@@ -26,6 +35,13 @@ Scheduling:
     Networking:
       SubnetIds:
       - {SUBNET_COMPUTE}
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://{BUCKET_NAME}/on-node-configured.sh
+    Iam:
+      S3Access:
+        - BucketName: {BUCKET_NAME}
+          EnableWriteAccess: false
   - Name: g4dn-12xlarge
     ComputeResources:
     - Name: g4dn-12xlarge
@@ -35,6 +51,13 @@ Scheduling:
     Networking:
       SubnetIds:
       - {SUBNET_COMPUTE}
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://{BUCKET_NAME}/on-node-configured.sh
+    Iam:
+      S3Access:
+        - BucketName: {BUCKET_NAME}
+          EnableWriteAccess: false
   - Name: g4dn-metal
     ComputeResources:
     - Name: g4dn-metal
@@ -44,6 +67,13 @@ Scheduling:
     Networking:
       SubnetIds:
       - {SUBNET_COMPUTE}
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://{BUCKET_NAME}/on-node-configured.sh
+    Iam:
+      S3Access:
+        - BucketName: {BUCKET_NAME}
+          EnableWriteAccess: false
   - Name: c6i-2xlarge
     ComputeResources:
     - Name: c6i-2xlarge
@@ -53,6 +83,13 @@ Scheduling:
     Networking:
       SubnetIds:
       - {SUBNET_COMPUTE}
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://{BUCKET_NAME}/on-node-configured.sh
+    Iam:
+      S3Access:
+        - BucketName: {BUCKET_NAME}
+          EnableWriteAccess: false
   - Name: c6i-32xlarge
     ComputeResources:
     - Name: c6i-32xlarge
@@ -62,16 +99,13 @@ Scheduling:
     Networking:
       SubnetIds:
       - {SUBNET_COMPUTE}
-# You could add G5 instances if you use applicable region/AZ
-#  - Name: g5-48xlarge
-#    ComputeResources:
-#    - Name: g5-48xlarge
-#      InstanceType: g5.48xlarge
-#      MinCount: 0
-#      MaxCount: 10
-#    Networking:
-#      SubnetIds:
-#      - {SUBNET_COMPUTE}
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://{BUCKET_NAME}/on-node-configured.sh
+    Iam:
+      S3Access:
+        - BucketName: {BUCKET_NAME}
+          EnableWriteAccess: false
 #######################################################
 # Storage
 #######################################################
