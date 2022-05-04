@@ -5,6 +5,10 @@ set up example for Relion on AWS ParallelCluster
 - AWS ParallelCluster 3.1.3
 - Relion ver3.1
 
+## Architecture Overview
+
+
+
 ## set by step guide
 
 ### set up AWS ParallelCluster
@@ -41,12 +45,28 @@ On GUI terminal,
 ```
 git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
 cd aws-parallelcluster-relion/02_relion_gui
+./setup_relion_v31_gui.sh
+source ~/.bashrc
+```
 
+:warning: **This compilation settings are not optimized. You need to customize for appropriate benchmarkings.**
+
+
+#### Use public data for demonstration
+
+- Download datasets
+```
+cd /shared
+wget ftp://ftp.mrc-lmb.cam.ac.uk/pub/scheres/relion30_tutorial_precalculated_results.tar.gz
+tar xvf relion30_tutorial_precalculated_results.tar.gz
+cd relion30_tutorial_precalculated_results/
+relion &
 ```
 
 
 ### benchmark Relion with compile optimization
 
+TBU
 
 ### Clean up Environments
 
