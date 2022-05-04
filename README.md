@@ -99,6 +99,8 @@ relion &
 
 ![NICE-DCV](images/relion_start.png)
 
+#### 2.4 Run Class2D on batch job
+
 You could submit a job to job scheduler with `Running` tab settings.
 In this tutorial show an example with run **Class2D** process with batch job submission way.
 
@@ -117,7 +119,7 @@ In this tutorial show an example with run **Class2D** process with batch job sub
 5. Click `Run!` button to submit a new job.
   - After job submission, you could find new EC2 instance is launching on EC2 management console.
   - You could also find your job status with `squeue` command. Usually, launching instance needs almost 4 minutes. 
-  - When the job started, `ST` (STATUS) become `R` from `CF` in `squeue` command. You could also check the job progress with output box on Relion [image](images/relion_outputs.png).
+  - When the job started, `ST` (STATUS) become `R` (RUNNING) from `CF` in `squeue` command. You could also check the job progress with output box on Relion [image](images/relion_outputs.png).
 6. This job takes arround 10 minutes.
 
 
@@ -137,7 +139,11 @@ TBU
 
 ```
 pcluster delete-cluster -n ${PCLUSTER_CLUSTER_NAME}
+```
+<!--
+```
 aws s3 rm s3://${BUCKET_NAME} --recursive
 aws s3 rb s3://${BUCKET_NAME}
 aws ec2 delete-key-pair --key-name ${SSH_KEY}
 ```
+-->
