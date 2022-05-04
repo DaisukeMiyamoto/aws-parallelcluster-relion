@@ -9,7 +9,7 @@ set up example for Relion on AWS ParallelCluster
 
 ![Architecture Overview](images/relion_architecture.png)
 
-- :warning: **This tutorial environment does not includes FSx for Lustre / S3 integration**
+- :warning: **This tutorial environment does not include FSx for Lustre / S3 integration**
 
 ## set by step guide
 
@@ -56,6 +56,7 @@ On NICE-DCV desktop, open **terminal** from Activities button on top left corner
 Run following commands on the terminal for installing Relion.
 
 ```
+cd /shared
 git clone https://github.com/DaisukeMiyamoto/aws-parallelcluster-relion
 cd aws-parallelcluster-relion/02_relion_gui
 ./setup_relion_v31_gui.sh
@@ -82,17 +83,17 @@ This dataset include all completed steps and intermediate files.
 You could run any process without input parameter settings.
 In this tutorial we will run **MotionCorr** process with batch job submission way.
 
-- 1. Click `002:MotionCorr/relioncor2/` in `Finished jobs` window to re-load MotionCorr settings.
-- 2. Click `Motion correction` in top-left corner to create a new settings.
-- 3. Open `Running` tab and set following parameters
+1. Click `002:MotionCorr/relioncor2/` in `Finished jobs` window to re-load MotionCorr settings.
+2. Click `Motion correction` in top-left corner to create a new settings.
+3. Open `Running` tab and set following parameters
   - [Running] Tab
     - Number of MPI procs: 1
     - Number of threads: 8
     - Submit to queue?: Yes
     - Queue name: c6i-2xlarge
     - Queue submit command: sbatch
-    - Standard submission script: /home/ubuntu/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh
-- 4. Click `Run!` button to submit a new job.
+    - Standard submission script: /shared/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh
+4. Click `Run!` button to submit a new job.
 
 
 - This figure show how relion job submission works with GUI and template files.
