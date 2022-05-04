@@ -3,7 +3,7 @@
 set up example for Relion on AWS ParallelCluster
 
 - AWS ParallelCluster 3.1.3
-- Relion ver3.1
+- Relion 3.1.3
 
 ## Architecture Overview
 
@@ -11,7 +11,6 @@ set up example for Relion on AWS ParallelCluster
 
 - :warning: **This tutorial environment does not include FSx for Lustre / S3 integration**
 
-## set by step guide
 
 ## Tutorial
 
@@ -54,7 +53,7 @@ You need to click `Advanced` and `Proceed to <IP> (unsafe)` to open NICE-DCV des
 
 ![NICE-DCV](images/dcv_start.png)
 
-On NICE-DCV desktop, open **terminal** from Activities button on top left corner.
+On NICE-DCV desktop, open **terminal** from Activities button on top-left corner.
 Run following commands on the terminal for installing Relion.
 
 ```
@@ -72,7 +71,19 @@ source ~/.bashrc
 #### 2.3 Use public data for demonstration
 
 Download datasets and launch Relion.
+- :warning: This step downloads large amount of data (7GB) from Osaka University. Please read guides for appropriate use.
+  - http://www.protein.osaka-u.ac.jp/rcsfp/databases/members/kawabata/EMtutorial.html
 
+
+```
+cd /shared
+wget http://www.protein.osaka-u.ac.jp/rcsfp/databases/members/kawabata/EMtutorial/EMPIAR-10248/EMPIAR-10248_tutorial_precalculated_results.tar.gz
+tar xvf EMPIAR-10248_tutorial_precalculated_results.tar.gz
+cd EMPIAR-10248_tutorial
+relion &
+```
+
+<!--
 ```
 cd /shared
 wget ftp://ftp.mrc-lmb.cam.ac.uk/pub/scheres/relion31_tutorial_precalculated_results.tar.gz
@@ -80,26 +91,30 @@ tar xvf relion31_tutorial_precalculated_results.tar.gz
 cd PrecalculatedResults
 relion &
 ```
+-->
 
 This dataset include all completed steps and intermediate files.
 You could run any process without input parameter settings.
 In this tutorial we will run **MotionCorr** process with batch job submission way.
 
-1. Click `002:MotionCorr/relioncor2/` in `Finished jobs` window to re-load MotionCorr settings.
-2. Click `Motion correction` in top-left corner to create a new settings.
-3. Open `Running` tab and set following parameters
+1. Click `002:MotionCorr/job002/` in `Finished jobs` window to re-load MotionCorr settings.
+2. Click `2D classification` in top-left corner to create a new settings.
+3. Open `Compute` tab and set following parameters:
+    - Use GPU acceleration?: No
+4. Open `Running` tab and set following parameters:
   - [Running] Tab
     - Number of MPI procs: 1
     - Number of threads: 8
     - Submit to queue?: Yes
     - Queue name: c6i-2xlarge
     - Queue submit command: sbatch
-    - Standard submission script: /shared/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh
-4. Click `Run!` button to submit a new job.
+    - Standard submission script: `/shared/aws-parallelcluster-relion/02_relion_gui/gui_batch_template_slurm.sh`
+5. Click `Run!` button to submit a new job.
+6. This job takes arround 10 minutes.
 
 
 - This figure show how relion job submission works with GUI and template files.
-Relion GUI replace parameters (XXX)in template file
+Relion GUI replace parameters (e.g. `XXXmpinodesXXX` ) with GUI settings.
 ![How relion job works](images/how_relion_job_works.png)
 
 
