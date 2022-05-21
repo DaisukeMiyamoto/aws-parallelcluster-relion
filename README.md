@@ -136,6 +136,27 @@ Relion GUI replace parameters (e.g. `XXXmpinodesXXX` ) with GUI settings.
 
 TBU
 
+#### 3.1 Download sample benchmark files
+
+```
+cd /shared/aws-parallelcluster-relion/03_relion_benchmarks
+chmod +x 03_download_benchmarks.sh
+./03_download_benchmarks.sh
+```
+
+
+#### 3.2 benchmark for Intel/AMD CPUs
+
+```
+chmod +x 01_setup_dependencies.sh
+./01_setup_dependencies.sh
+```
+
+#### 3.3 benchmark for GPUs
+
+#### 3.4 benchmark for Graviton(Arm64) CPUs
+
+
 ### Clean up Environments
 
 TBU
