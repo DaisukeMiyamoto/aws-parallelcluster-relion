@@ -20,7 +20,7 @@ COMPUTE_OPTIONS="--j ${SLURM_CPUS_PER_TASK} --cpu --pool 100 --dont_combine_weig
 RELION_REFINE="mpirun -np ${SLURM_NTASKS} `which relion_refine_mpi`"
 
 ##################################################################
-RESULT_DIR="${SLRUM_JOB_NAME}_${SLURM_JOB_ID}"
+RESULT_DIR="${SLURM_JOB_NAME}_${SLURM_JOB_ID}"
 mkdir ${RESULT_DIR}
 
 ##################################################################
